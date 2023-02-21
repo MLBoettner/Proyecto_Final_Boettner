@@ -1,0 +1,44 @@
+{% extends 'AppCoder/padre.html' %}
+
+{% block titulo %}
+
+{{posteo.titulo}}
+
+{% endblock %}
+
+  {%block contenido %}
+
+  <!-- Post header-->
+  <header class="mb-4">
+  <!-- Post meta content-->
+  <div class="text-muted fst-italic mb-2">Posteado el {{posteo.fecha}} por {{posteo.autor}}</div>
+  </header>
+
+  <hr>
+
+  <p class="fs-5 mb-4"> {{posteo.descripcion}}</p>
+  
+  <hr>
+
+  <h3>Comentarios ....</h3>
+  
+  <a href="{% url 'add-comentarios' posteo.pk %}"> Agrega Comentarios </a>
+
+  <br> <br>
+
+      {% for comentario in posteo.comentarios.all %}
+
+          <!-- Single comment-->
+        
+            <div class="ms-3">
+                <div class="fw-bold">{{ comentario.nombre }} - {{ comentario.fecha }}</div>
+                    <p>{{ comentario.cuerpo }} </p>
+                <hr/>
+            </div>
+  
+      {%endfor%}   
+    
+
+
+
+  {% endblock %}
