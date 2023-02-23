@@ -13,6 +13,8 @@ class Posteo (models.Model):
     def __str__(self):
         return self.titulo + '|' + str(self.autor)
 
+    def get_absolute_url(self):
+        return reverse ('inicio')
 
 class Comentario (models.Model):
     posteo=models.ForeignKey(Posteo, related_name="comentarios", on_delete=models.CASCADE)
@@ -23,5 +25,3 @@ class Comentario (models.Model):
     def __str__(self):
         return '%s -%s' % (self.posteo.titulo, self.nombre)
     
-    def get_absolute_url(self):
-        return reverse ('inicio')

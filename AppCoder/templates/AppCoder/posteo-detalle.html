@@ -12,11 +12,20 @@
   <header class="mb-4">
   <!-- Post meta content-->
   <div class="text-muted fst-italic mb-2">Posteado el {{posteo.fecha}} por {{posteo.autor}}</div>
+  
+    {%if user.is_authenticated %}
+
+        {%if user.id == posteo.autor.id %}
+             <a href="{% url 'update-posteo' posteo.pk %}">Editar</a> 
+             - <a href="{% url 'delete-posteo' posteo.pk %}">Eliminar</a>
+         {%endif%}
+
+    {%endif%}
   </header>
 
   <hr>
 
-  <p class="fs-5 mb-4"> {{posteo.descripcion}}</p>
+  <p class="fs-5 mb-4"> {{posteo.cuerpo}}</p>
   
   <hr>
 

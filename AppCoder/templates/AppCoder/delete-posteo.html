@@ -1,0 +1,35 @@
+{% extends 'AppCoder/padre.html' %}
+
+{% block titulo %}
+
+Eliminar Posteo
+
+{% endblock %}
+
+  {%block contenido %}
+
+  {%if user.is_authenticated %}
+
+     {%if user.id == posteo.autor.id %}  
+
+       <h3>Eliminar: {{posteo.titulo}}</h3>
+  
+       <div class="form-group">
+       <form method="POST"> 
+
+        {% csrf_token %}
+
+       <button> Eliminar Posteo </button>
+  
+        </div>
+
+      {%else%}
+
+        No puedes eliminar este Posteo, no eres el autor  
+
+      {%endif%}
+
+
+  {%endif%}
+
+  {% endblock %}

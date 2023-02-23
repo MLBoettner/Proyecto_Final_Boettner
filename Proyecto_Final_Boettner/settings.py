@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'AppCoder.apps.AppcoderConfig',
+    'miembros.apps.MiembrosConfig',
 ]
 
 MIDDLEWARE = [
@@ -123,4 +124,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_URL='AppCoder/login/'
+LOGIN_URL='inicio'

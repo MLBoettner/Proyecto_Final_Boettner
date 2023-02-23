@@ -7,7 +7,7 @@ Agregar un nuevo Posteo
 {% endblock %}
 
   {%block contenido %}
-
+  <div class="form-group">
   <form method="POST"> 
 
       {% csrf_token %}
@@ -15,5 +15,5 @@ Agregar un nuevo Posteo
 
       <button> Agregar Posteo </button>
   
-  
+  </div>
   {% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'AppCoder/padre.html' %}
+{% block contenido %}
+
+<h1>Registro</h1> <br>
+    
+    {% if mensaje %}
+    <p style="color: red;">{{mensaje}}</p>
+    {% endif %}
+
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        {{form.as_p}}
+
+        <button type="submit">Crear Usuario</button>
+    </form>
+    
+
+
+{% endblock %}

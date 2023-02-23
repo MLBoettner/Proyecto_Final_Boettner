@@ -1,10 +1,32 @@
 {% extends 'AppCoder/padre.html' %}
 
-{%block contenido %}
-                    
-                    <ul>
-                        { % for posteo in object_list % }
-                            <li> </a> {{ posteo.titulo }}</a>  </li>
-                        { % endfor % }
-                    </ul>
-{%endblock %}  
+{% block contenido %}
+
+  <h1>Posteos</h1>
+  
+  {% if posteo_list %}
+  <ul>
+    {% for posteo in posteo_list %}
+      <li>
+        <a href="{% url 'posteo-detalle' posteo.pk %}"> {{ posteo.titulo }}</a> - Autor: {{posteo.autor}}  
+        
+        {%if user.is_authenticated %}
+
+            {%if user.id == posteo.autor.id %}
+               - <a href="{% url 'update-posteo' posteo.pk %}">Editar</a> 
+               - <a href="{% url 'delete-posteo' posteo.pk %}">Eliminar</a>
+            {%endif%}
+       
+        {%endif%}
+
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>Todavia no hay posteos</p>
+  {% endif %}
+
+{% endblock %}
+
+
+
