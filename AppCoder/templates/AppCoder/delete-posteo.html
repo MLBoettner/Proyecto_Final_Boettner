@@ -12,14 +12,14 @@ Eliminar Posteo
 
      {%if user.id == posteo.autor.id %}  
 
-       <h3>Eliminar: {{posteo.titulo}}</h3>
+       <h3>{{posteo.titulo}}</h3>
   
        <div class="form-group">
        <form method="POST"> 
 
         {% csrf_token %}
 
-       <button> Eliminar Posteo </button>
+        <button type="submit" class="btn btn-secondary btn-sm">Eliminar Posteo</button>
   
         </div>
 

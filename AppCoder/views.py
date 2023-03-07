@@ -10,7 +10,6 @@ def aboutme (request):
     return render (request, "AppCoder/aboutme.html")
 
 
-
 class PosteoView (ListView):
     model=Posteo
     template_name="AppCoder/inicio.html"
@@ -28,7 +27,7 @@ class AddPosteoView (CreateView):
 class UpdatePosteoView (UpdateView):
     model=Posteo
     template_name="AppCoder/update-posteo.html"
-    fields=['titulo', 'cuerpo']
+    fields=['titulo', 'subtitulo','imagen','cuerpo', ]
 
 class DeletePosteoView (DeleteView):
     model=Posteo

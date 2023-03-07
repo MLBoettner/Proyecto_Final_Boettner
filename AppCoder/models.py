@@ -6,8 +6,10 @@ from django.urls import reverse
 class Posteo (models.Model):
 
     titulo=models.CharField(max_length=255)
+    subtitulo=models.CharField(max_length=255)
     autor=models.ForeignKey(User, on_delete=models.CASCADE)
-    cuerpo= models.TextField() 
+    imagen=models.ImageField(null=True, blank=True, upload_to="imagenes/")
+    cuerpo=models.TextField() 
     fecha=models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -25,3 +27,15 @@ class Comentario (models.Model):
     def __str__(self):
         return '%s -%s' % (self.posteo.titulo, self.nombre)
     
+
+class Perfil (models.Model):
+    user=models.OneToOneField(User,null=True, on_delete=models.CASCADE)
+    bio=models.TextField() 
+    perfil_pic=models.ImageField(null=True, blank=True, upload_to="imagenes/perfil/")
+    web_url=models.CharField(max_length=255, null=True, blank=True)
+
+    def __str__(self):
+        return str(self.user)
+    
+    def get_absolute_url(self):
+        return reverse('inicio')

@@ -2,7 +2,7 @@
 
 {% block titulo %}
 
-Agregar un nuevo Posteo
+Crear Perfil
 
 {% endblock %}
 
@@ -17,19 +17,13 @@ Agregar un nuevo Posteo
       {% csrf_token %}
       {{ form.as_p }}
 
-      <button type="submit" class="btn btn-secondary btn-sm"> Agregar Posteo </button>
+      <button type="submit" class="btn btn-secondary btn-sm"> Crear Perfil </button>
 
   </div>
 
-  <script>
-     var name="{{user.id}}";
-     document.getElementById("usuario").value=name;
-
-  </script>
-
 {%else%}
 
-    Logeate para poder escribir un Post
+    Logeate para poder crear tu Perfil
 
 {%endif%}
 

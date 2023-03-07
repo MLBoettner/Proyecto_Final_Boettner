@@ -1,8 +1,13 @@
 {% extends 'AppCoder/padre.html' %}
 
+{% load static %}
+
 {% block titulo %}
 
 {{posteo.titulo}}
+
+
+<h4>{{posteo.subtitulo}}</h4>
 
 {% endblock %}
 
@@ -24,6 +29,12 @@
   </header>
 
   <hr>
+
+  {% if posteo.imagen %}
+
+        <img src="{{posteo.imagen.url}}"> <br> <br>
+
+  {% endif %}
 
   <p class="fs-5 mb-4"> {{posteo.cuerpo}}</p>
   
@@ -48,6 +59,29 @@
       {%endfor%}   
     
 
+
+      <div class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-2">
+           
+            {% if posteo.autor.perfil.perfil_pic %} 
+                <img src="{{posteo.autor.perfil.perfil_pic.url}}"class="img-fluid rounded-start" >
+            {% else %}
+                <img src="{% static 'AppCoder/imagen/default.jpg' %}"class="img-fluid rounded-start" >
+            {% endif %}
+        
+        </div>
+          <div class="col-md-10">
+            <div class="card-body">
+              <h5 class="card-title">{{posteo.autor}}</h5>
+              {% if posteo.autor.perfil.web_url %}
+                <p class="small text-muted"> <a href="{{posteo.autor.perfil.web_url}}"> Website </a> </small></p>
+              {% endif %}
+              <p class="card-text">{{posteo.autor.perfil.bio}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
   {% endblock %}
