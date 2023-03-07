@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 
 # Create your models here.
+
+# Genero el objeto Posteo y sus atributos correspondientes 
 class Posteo (models.Model):
 
     titulo=models.CharField(max_length=255)
@@ -17,6 +19,8 @@ class Posteo (models.Model):
 
     def get_absolute_url(self):
         return reverse ('inicio')
+    
+ # Genero el objeto Comentarios, que permite asociar comentarios a los Posteos
 
 class Comentario (models.Model):
     posteo=models.ForeignKey(Posteo, related_name="comentarios", on_delete=models.CASCADE)
@@ -27,6 +31,7 @@ class Comentario (models.Model):
     def __str__(self):
         return '%s -%s' % (self.posteo.titulo, self.nombre)
     
+# Genero el objeto Perfil, que permite asociar un perfil a cada usuario
 
 class Perfil (models.Model):
     user=models.OneToOneField(User,null=True, on_delete=models.CASCADE)

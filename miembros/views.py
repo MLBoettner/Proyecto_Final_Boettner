@@ -9,6 +9,8 @@ from AppCoder.models import Perfil
 
 
 # Create your views here.
+
+# Vista de la pagina para loguearse al blog 
 def login_request(request):
     form=AuthenticationForm()
 
@@ -32,6 +34,7 @@ def login_request(request):
     
     return render(request, 'miembros/login.html', {'form':form})   
 
+# Vista de la pagina para registrarse y crear un usuario
 def register(request):
     if request.method== 'POST':
 
@@ -40,13 +43,13 @@ def register(request):
         if form.is_valid():
             username=form.cleaned_data['username']
             form.save()
-            return redirect ("/")
-        
+            return render (request, 'miembros/registro-exitoso.html')  
     else:
         form=MyUserCreationForm ()
     
     return render (request, 'miembros/registro.html', {"form": form })
 
+# Vista de la pagina que permite modificar los settings de un Perfil
 class UserEditView (UpdateView):
     form_class=EditSettingsForm
     template_name='miembros/perfil.html'
@@ -55,13 +58,14 @@ class UserEditView (UpdateView):
     def get_object(self):
         return self.request.user
     
+# Vista de la pagina que permite modificar el Perfil una vez que el usuario loguedo ya lo creo    
 class UserEditPerfilView(UpdateView):
      model=Perfil
      template_name='miembros/editarperfil.html'
      fields=['bio', 'perfil_pic', 'web_url']
      success_url=reverse_lazy('inicio')
     
-
+# Vista de la pagina que permite crear el Perfil  
 class UserCrearPerfilView(CreateView):
      model=Perfil
      form_class=CrearPerfilForm
@@ -71,7 +75,7 @@ class UserCrearPerfilView(CreateView):
          form.instance.user=self.request.user
          return super().form_valid(form)
     
-        
+# Vista que permite el cambio de contraseña        
 class CambioPassword (PasswordChangeView):
     form_class=CambioPasswordForm
     success_url=reverse_lazy('password-exitosa')
